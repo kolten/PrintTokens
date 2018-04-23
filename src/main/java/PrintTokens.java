@@ -81,6 +81,7 @@ public class PrintTokens {
     BufferedReader open_token_stream(String fname)
     {
         BufferedReader br;
+        // TODO: Could all ways be false
         if(fname.equals(null))
             br=open_character_stream(null);
         else
@@ -118,6 +119,7 @@ public class PrintTokens {
 
             if(res == -1)return null;
             sb.append(ch);
+            // TODO: Simplify
             if(is_spec_symbol(ch)==true)return sb.toString();
             if(ch =='"')id=2;    /* prepare for string */
             if(ch ==59)id=1;    /* prepare for comment */
@@ -129,6 +131,7 @@ public class PrintTokens {
             }
             ch = (char)res;
 
+            // TODO: Simplify
             while (is_token_end(id,res) == false)/* until meet the end character */
             {
                 sb.append(ch);
@@ -145,6 +148,7 @@ public class PrintTokens {
                 return sb.toString();
             }
 
+            // TODO: Simplify
             if(is_spec_symbol(ch)==true)     /* if end character is special_symbol */
             { unget_char(ch,br);        /* then put back this character       */
                 return sb.toString();
@@ -176,7 +180,9 @@ public class PrintTokens {
         if(res==-1)return(true); /* is eof token? */
         char ch = (char)res;
         if(str_com_id==1)          /* is string token */
-        { if(ch=='"' | ch=='\n' || ch == '\r')   /* for string until meet another " */
+        {
+            // TODO: Could be broken up
+            if(ch=='"' | ch=='\n' || ch == '\r')   /* for string until meet another " */
             return true;
         else
             return false;
@@ -189,6 +195,7 @@ public class PrintTokens {
             return false;
         }
 
+        // TODO: Could be simplified
         if(is_spec_symbol(ch)==true) return true; /* is special_symbol? */
         if(ch ==' ' || ch=='\n'|| ch=='\r' || ch==59) return true;
 
@@ -463,6 +470,7 @@ public class PrintTokens {
         if (args.length == 0) {	/* if not given filename,take as '""' */
             fname = "";
         } else if (args.length == 1) {
+            // TODO: BUG, array access out of bounds
             fname = args[1];
         } else {
             System.out.print(args);

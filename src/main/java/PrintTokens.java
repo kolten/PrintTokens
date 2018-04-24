@@ -301,7 +301,7 @@ public class PrintTokens {
     /*************************************/
     static boolean is_comment(String ident)
     {
-        if( ident.charAt(0) ==59 )   /* the char is 59   */
+        if( ident.charAt(0) == 59 )   /* the char is 59   */
             return true;
         else
             return false;
@@ -342,7 +342,7 @@ public class PrintTokens {
     /*************************************/
     static boolean is_num_constant(String str)
     {
-        int i=1;
+        int i=0;
 
         if ( Character.isDigit(str.charAt(0)))
         {
@@ -393,32 +393,20 @@ public class PrintTokens {
 
 
     {
-        // int i=1;
-        //        if ( Character.isLetter(str.charAt(0)) )
-        //        {
-        //            while(i < str.length() && str.charAt(i) !='\0' )   /* until meet the end token sign */
-        //            {
-        //                if(Character.isLetter(str.charAt(i)) || Character.isDigit(str.charAt(i)))
-        //                    i++;
-        //                else
-        //                    return false;
-        //            }      /* end WHILE */
-        //            return false;
-        //        }
-        //        else
-        //            return true;
-        // Super redundant code
-
-        int i = 0;
-        while(i < str.length() && str.charAt(i) !='\0' )   /* until meet the end token sign */
-        {
-            if(Character.isLetter(str.charAt(i)) || Character.isDigit(str.charAt(i)))
-                i++;
-            else
-                return false;
-        }      /* end WHILE */
-
-        return true;
+         int i=0;
+                if ( Character.isLetter(str.charAt(i)) )
+                {
+                    while(i < str.length() && str.charAt(i) !='\0' )   /* until meet the end token sign */
+                    {
+                        if(Character.isLetter(str.charAt(i)) || Character.isDigit(str.charAt(i)))
+                            i++;
+                        else
+                            return false;
+                    }      /* end WHILE */
+                    return true;
+                }
+                else
+                    return false;
     }
 
 

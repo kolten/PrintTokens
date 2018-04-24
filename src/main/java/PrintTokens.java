@@ -4,16 +4,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.Arrays;
 
 public class PrintTokens {
     static int error = 0;
     static int keyword = 1;
     static int spec_symbol = 2;
     static int identifier = 3;
-    static int num_constant = 41;
-    static int str_constant = 42;
-    static int char_constant = 43;
-    static int comment = 5;
+    static int num_constant = 4;
+    static int str_constant = 5;
+    static int char_constant = 6;
+    static int comment = 7;
 
     /***********************************************/
     /* NMAE:	open_character_stream          */
@@ -62,7 +63,7 @@ public class PrintTokens {
     /* OUTPUT:    a character                          */
     /* DESCRIPTION: move backward  */
     /***************************************************/
-    char unget_char (int ch,BufferedReader br) {
+    char unget_char (int ch, BufferedReader br) {
         try {
             br.reset();
         } catch (IOException e) {
@@ -82,8 +83,9 @@ public class PrintTokens {
     {
         BufferedReader br;
         // TODO: Could all ways be false
-        if(fname.equals(null))
+        if(fname.equals(null)){
             br=open_character_stream(null);
+        }
         else
             br=open_character_stream(fname);
         return br;
@@ -101,7 +103,7 @@ public class PrintTokens {
         int i=0,j;
         int id=0;
         int res = 0;
-        char ch = '\0';
+        char ch;
 
         StringBuilder sb = new StringBuilder();
 
@@ -117,12 +119,20 @@ public class PrintTokens {
                 ch = (char)res;
             }
 
-            if(res == -1)return null;
+            if(res == -1){
+                return null;
+            }
             sb.append(ch);
-            // TODO: Simplify
-            if(is_spec_symbol(ch)==true)return sb.toString();
-            if(ch =='"')id=2;    /* prepare for string */
-            if(ch ==59)id=1;    /* prepare for comment */
+
+            if(is_spec_symbol(ch)){
+                return sb.toString();
+            }
+            if(ch =='"'){
+                id=2;    /* prepare for string */
+            }
+            if(ch ==59){
+                id=1;    /* prepare for comment */
+            }
 
             res = get_char(br);
             if (res == -1) {
@@ -131,8 +141,7 @@ public class PrintTokens {
             }
             ch = (char)res;
 
-            // TODO: Simplify
-            while (is_token_end(id,res) == false)/* until meet the end character */
+            while (!is_token_end(id, res))/* until meet the end character */
             {
                 sb.append(ch);
                 br.mark(4);
@@ -148,8 +157,7 @@ public class PrintTokens {
                 return sb.toString();
             }
 
-            // TODO: Simplify
-            if(is_spec_symbol(ch)==true)     /* if end character is special_symbol */
+            if(is_spec_symbol(ch))     /* if end character is special_symbol */
             { unget_char(ch,br);        /* then put back this character       */
                 return sb.toString();
             }
@@ -177,13 +185,17 @@ public class PrintTokens {
     /*******************************************************/
     static boolean is_token_end(int str_com_id, int res)
     {
-        if(res==-1)return(true); /* is eof token? */
+        if(res==-1){
+            return(true); /* is eof token? */
+        }
         char ch = (char)res;
         if(str_com_id==1)          /* is string token */
         {
             // TODO: Could be broken up
-            if(ch=='"' | ch=='\n' || ch == '\r')   /* for string until meet another " */
-            return true;
+            if(ch=='"' || ch=='\n' || ch == '\r'){
+                return true;/* for string until meet another " */
+            }
+
         else
             return false;
         }
@@ -196,10 +208,15 @@ public class PrintTokens {
         }
 
         // TODO: Could be simplified
-        if(is_spec_symbol(ch)==true) return true; /* is special_symbol? */
-        if(ch ==' ' || ch=='\n'|| ch=='\r' || ch==59) return true;
+        if(is_spec_symbol(ch)){
+            return true; /* is special_symbol? */
+        }
+        if(ch ==' ' || ch=='\n'|| ch=='\r' || ch==59) {
+            return true;
+        }
 
-        return false;               /* other case,return FALSE */
+        return false;
+
     }
 
     /****************************************************/
@@ -211,13 +228,27 @@ public class PrintTokens {
     /****************************************************/
     static int token_type(String tok)
     {
-        if(is_keyword(tok))return(keyword);
-        if(is_spec_symbol(tok.charAt(0)))return(spec_symbol);
-        if(is_identifier(tok))return(identifier);
-        if(is_num_constant(tok))return(num_constant);
-        if(is_str_constant(tok))return(str_constant);
-        if(is_char_constant(tok))return(char_constant);
-        if(is_comment(tok))return(comment);
+        if(is_keyword(tok)){
+            return(keyword);
+        }
+        if(is_spec_symbol(tok.charAt(0))){
+            return(spec_symbol);
+        }
+        if(is_identifier(tok)){
+            return(identifier);
+        }
+        if(is_num_constant(tok)){
+            return(num_constant);
+        }
+        if(is_str_constant(tok)){
+            return(str_constant);
+        }
+        if(is_char_constant(tok)){
+            return(char_constant);
+        }
+        if(is_comment(tok)){
+            return(comment);
+        }
         return(error);                    /* else look as error token */
     }
 
@@ -238,7 +269,9 @@ public class PrintTokens {
             System.out.print("keyword,\"" + tok + "\".\n");
         }
 
-        if(type==spec_symbol)print_spec_symbol(tok);
+        if(type==spec_symbol){
+            print_spec_symbol(tok);
+        }
         if(type==identifier)
         {
             System.out.print("identifier,\"" + tok + "\".\n");
@@ -282,7 +315,7 @@ public class PrintTokens {
     static boolean is_keyword(String str)
     {
         if (str.equals("and") || str.equals("or") || str.equals("if") ||
-                str.equals("xor")||str.equals("lambda")||str.equals("=>"))
+                str.equals("xor")||str.equals("lambda")||str.equals("=>") || str.equals("for") || str.equals("while"))
             return true;
         else
             return false;
@@ -295,7 +328,8 @@ public class PrintTokens {
     /*************************************/
     static boolean is_char_constant(String str)
     {
-        if (str.length() > 2 && str.charAt(0)=='#' && Character.isLetter(str.charAt(1)))
+        // TODO: Bug, > -> >=
+        if (str.length() >= 2 && str.charAt(0)=='#' && Character.isLetter(str.charAt(1)))
             return true;
         else
             return false;
@@ -336,15 +370,18 @@ public class PrintTokens {
 
         if ( str.charAt(0) =='"')
         { while (i < str.length() && str.charAt(0)!='\0')  /* until meet the token end sign */
-        { if(str.charAt(i)=='"')
-            return true;        /* meet the second '"'           */
-        else
-            i++;
+        {
+            if(str.charAt(i)=='"')
+                return true;        /* meet the second '"'           */
+            else {
+                i++;
+            }
         }               /* end WHILE */
             return true;
         }
-        else
+        else {
             return false;       /* other return FALSE */
+        }
     }
 
     /*************************************/
@@ -353,23 +390,37 @@ public class PrintTokens {
     /* OUTPUT:      a BOOLEAN value      */
     /*************************************/
     static boolean is_identifier(String str)
-    {
-        int i=1;
 
-        if ( Character.isLetter(str.charAt(0)) )
+
+    {
+        // int i=1;
+        //        if ( Character.isLetter(str.charAt(0)) )
+        //        {
+        //            while(i < str.length() && str.charAt(i) !='\0' )   /* until meet the end token sign */
+        //            {
+        //                if(Character.isLetter(str.charAt(i)) || Character.isDigit(str.charAt(i)))
+        //                    i++;
+        //                else
+        //                    return false;
+        //            }      /* end WHILE */
+        //            return false;
+        //        }
+        //        else
+        //            return true;
+        // Super redundant code
+
+        int i = 0;
+        while(i < str.length() && str.charAt(i) !='\0' )   /* until meet the end token sign */
         {
-            while(i < str.length() && str.charAt(i) !='\0' )   /* unti meet the end token sign */
-            {
-                if(Character.isLetter(str.charAt(i)) || Character.isDigit(str.charAt(i)))
-                    i++;
-                else
-                    return false;
-            }      /* end WHILE */
-            return false;
-        }
-        else
-            return true;
+            if(Character.isLetter(str.charAt(i)) || Character.isDigit(str.charAt(i)))
+                i++;
+            else
+                return false;
+        }      /* end WHILE */
+
+        return true;
     }
+
 
     /******************************************/
     /* NAME:	unget_error               */
@@ -389,39 +440,39 @@ public class PrintTokens {
     /*************************************************/
     static void print_spec_symbol(String str)
     {
-        if      (str.equals("{"))
+        if (str.equals("{"))
         {
 
             System.out.print("lparen.\n");
-            return;
+            //return;
         }
         if (str.equals(")"))
         {
 
-            System.out.print("rparen.\n");
-            return;
+             System.out.print("rparen.\n");
+            //return;
         }
         if (str.equals("["))
         {
             System.out.print("lsquare.\n");
-            return;
+            //return;
         }
         if (str.equals("]"))
         {
 
             System.out.print("rsquare.\n");
-            return;
+            //return;
         }
         if (str.equals("'"))
         {
             System.out.print("quote.\n");
-            return;
+            // return;
         }
         if (str.equals("`"))
         {
 
             System.out.print("bquote.\n");
-            return;
+            //return;
         }
 
 
@@ -471,9 +522,10 @@ public class PrintTokens {
             fname = "";
         } else if (args.length == 1) {
             // TODO: BUG, array access out of bounds
-            fname = args[1];
+            fname = args[0];
         } else {
-            System.out.print(args);
+            // Fix
+            System.out.print(Arrays.toString(args));
             System.out.print("Error!,please give the token stream\n");
             System.exit(0);
         }

@@ -366,7 +366,7 @@ public class PrintTokens {
     /*************************************/
     static boolean is_str_constant(String str)
     {
-        int i=1;
+        int i=0;
 
         if ( str.charAt(0) =='"')
         { while (i < str.length() && str.charAt(0)!='\0')  /* until meet the token end sign */

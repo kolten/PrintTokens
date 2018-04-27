@@ -392,20 +392,20 @@ public class PrintTokens {
     /*************************************/
     static boolean is_identifier(String str)
     {
-         int i=0;
-                if ( Character.isLetter(str.charAt(i)) )
-                {
-                    while(i < str.length() && str.charAt(i) !='\0' )   /* until meet the end token sign */
-                    {
-                        if(Character.isLetter(str.charAt(i)) || Character.isDigit(str.charAt(i)))
-                            i++;
-                        else
-                            return false;
-                    }      /* end WHILE */
-                    return true;
-                }
+        int i=0;
+        if ( Character.isLetter(str.charAt(i)) )
+        {
+            while(i < str.length() && str.charAt(i) !='\0' )   /* until meet the end token sign */
+            {
+                if(Character.isLetter(str.charAt(i)) || Character.isDigit(str.charAt(i)))
+                    i++;
                 else
                     return false;
+            }      /* end WHILE */
+            return true;
+        }
+        else
+            return false;
     }
 
 

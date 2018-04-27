@@ -315,7 +315,7 @@ public class PrintTokens {
     static boolean is_keyword(String str)
     {
         if (str.equals("and") || str.equals("or") || str.equals("if") ||
-                str.equals("xor")||str.equals("lambda")||str.equals("=>") || str.equals("for") || str.equals("while"))
+                str.equals("xor")||str.equals("lambda")||str.equals("=>"))
             return true;
         else
             return false;

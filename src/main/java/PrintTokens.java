@@ -82,7 +82,6 @@ public class PrintTokens {
     BufferedReader open_token_stream(String fname)
     {
         BufferedReader br;
-        // TODO: Could all ways be false
         if(fname.equals(null)){
             br=open_character_stream(null);
         }
@@ -100,7 +99,8 @@ public class PrintTokens {
     /********************************************************/
     String get_token(BufferedReader br)
     {
-        int i=0,j;
+//        int i=0,
+//        int j = 0;
         int id=0;
         int res = 0;
         char ch;
@@ -257,19 +257,19 @@ public class PrintTokens {
     /* INPUT:	a token                                 */
     /****************************************************/
     void print_token(String tok)
-    { int type;
+    {
+        int type;
         type=token_type(tok);
         if(type==error)
         {
             System.out.print("error,\"" + tok + "\".\n");
         }
-
         if(type==keyword)
         {
             System.out.print("keyword,\"" + tok + "\".\n");
         }
-
-        if(type==spec_symbol){
+        if(type==spec_symbol)
+        {
             print_spec_symbol(tok);
         }
         if(type==identifier)
@@ -369,7 +369,8 @@ public class PrintTokens {
         int i=0;
 
         if ( str.charAt(0) =='"')
-        { while (i < str.length() && str.charAt(0)!='\0')  /* until meet the token end sign */
+        {
+            while (i < str.length() && str.charAt(0)!='\0')  /* until meet the token end sign */
         {
             if(str.charAt(i)=='"')
                 return true;        /* meet the second '"'           */
@@ -390,8 +391,6 @@ public class PrintTokens {
     /* OUTPUT:      a BOOLEAN value      */
     /*************************************/
     static boolean is_identifier(String str)
-
-
     {
          int i=0;
                 if ( Character.isLetter(str.charAt(i)) )
@@ -506,7 +505,8 @@ public class PrintTokens {
 
     public static void main(String[] args) throws IOException {
         String fname = null;
-        if (args.length == 0) {	/* if not given filename,take as '""' */
+        if (args.length == 0)
+        {	/* if not given filename,take as '""' */
             fname = "";
         } else if (args.length == 1) {
             // TODO: BUG, array access out of bounds

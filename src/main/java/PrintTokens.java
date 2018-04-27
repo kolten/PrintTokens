@@ -429,40 +429,28 @@ public class PrintTokens {
     {
         if (str.equals("{"))
         {
-
             System.out.print("lparen.\n");
-            //return;
         }
         if (str.equals(")"))
         {
-
              System.out.print("rparen.\n");
-            //return;
         }
         if (str.equals("["))
         {
             System.out.print("lsquare.\n");
-            //return;
         }
         if (str.equals("]"))
         {
-
             System.out.print("rsquare.\n");
-            //return;
         }
         if (str.equals("'"))
         {
             System.out.print("quote.\n");
-            // return;
         }
         if (str.equals("`"))
         {
-
             System.out.print("bquote.\n");
-            //return;
         }
-
-
     }
 
     /*************************************/

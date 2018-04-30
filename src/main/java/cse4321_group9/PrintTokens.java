@@ -1,9 +1,10 @@
+package cse4321_group9;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.Arrays;
 
 public class PrintTokens {
@@ -346,9 +347,9 @@ public class PrintTokens {
 
         if ( Character.isDigit(str.charAt(0)))
         {
-            while ( i <= str.length() && str.charAt(i) != '\0' )   /* until meet token end sign */
+            while ( i < str.length() && str.charAt(i) != '\0' )   /* until meet token end sign */
             {
-                if(Character.isDigit(str.charAt(i+1)))
+                if(Character.isDigit(str.charAt(i)))
                     i++;
                 else
                     return false;

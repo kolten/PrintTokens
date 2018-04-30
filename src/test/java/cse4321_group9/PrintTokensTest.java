@@ -1,6 +1,5 @@
 package cse4321_group9;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,16 +8,6 @@ public class PrintTokensTest {
 
     @Test
     public void open_character_stream() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void get_char() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void unget_char() {
         fail("Not yet implemented");
     }
 
@@ -82,11 +71,6 @@ public class PrintTokensTest {
     public void is_identifier() {
         boolean isIdentifier = PrintTokens.is_identifier("a");
         assertTrue(isIdentifier);
-    }
-
-    @Test
-    public void unget_error() {
-        fail("Not yet implemented");
     }
 
     @Test

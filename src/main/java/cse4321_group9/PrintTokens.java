@@ -83,7 +83,8 @@ public class PrintTokens {
     BufferedReader open_token_stream(String fname)
     {
         BufferedReader br;
-        if(fname.equals(null)){
+        // TODO: Bug, was null
+        if(fname.equals("")){
             br=open_character_stream(null);
         }
         else
@@ -367,7 +368,7 @@ public class PrintTokens {
     /*************************************/
     static boolean is_str_constant(String str)
     {
-        int i=0;
+        int i=1;
 
         if ( str.charAt(0) =='"')
         {
@@ -379,7 +380,7 @@ public class PrintTokens {
                 i++;
             }
         }               /* end WHILE */
-            return true;
+            return false;
         }
         else {
             return false;       /* other return FALSE */
@@ -428,7 +429,7 @@ public class PrintTokens {
     /*************************************************/
     static void print_spec_symbol(String str)
     {
-        if (str.equals("{"))
+        if (str.equals("("))
         {
             System.out.print("lparen.\n");
         }
@@ -474,10 +475,6 @@ public class PrintTokens {
             return true;
         }
         if (c == ']')
-        {
-            return true;
-        }
-        if (c == '\'')
         {
             return true;
         }

@@ -486,6 +486,10 @@ public class PrintTokens {
         {
             return true;
         }
+        if (c == '\'')
+        {
+            return true;
+        }
         return false;     /* others return FALSE */
     }
 

@@ -1,1 +1,15 @@
-"hello
+(
+)
+[
+]
+`
+'
+and, or, if, xor, lambda, =>
+a, aa, a1, a2, etc
+123
+1
+321
+"asd",
+"123"
+#a, #b, #c, #d,
+;hello

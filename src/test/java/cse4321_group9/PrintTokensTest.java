@@ -14,27 +14,27 @@ public class PrintTokensTest {
 
     @Before
     public void setUp(){
-//        tokens = new PrintTokens();
+        tokens = new PrintTokens();
     }
 
     @Test
     public void open_character_stream_with_file() {
         String fileName = "./tokens.txt";
-        PrintTokens tokens = new PrintTokens();
+        // tokens = new PrintTokens();
         BufferedReader reader = tokens.open_character_stream(fileName);
         assertNotNull(reader);
     }
 
     @Test
     public void open_character_stream_no_file() {
-        PrintTokens tokens = new PrintTokens();
+        // PrintTokens tokens = new PrintTokens();
         BufferedReader reader = tokens.open_character_stream(null);
         assertNotNull(reader);
     }
 
     @Test
     public void open_token_stream() {
-        PrintTokens tokens = new PrintTokens();
+        //PrintTokens tokens = new PrintTokens();
         String fileName = "./tokens.txt";
         BufferedReader reader = tokens.open_character_stream(fileName);
         assertNotNull("assert that reader is not null", reader);
@@ -119,4 +119,6 @@ public class PrintTokensTest {
     public void main() {
         fail("Not yet implemented");
     }
+
+
 }

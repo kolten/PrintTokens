@@ -344,7 +344,7 @@ public class PrintTokens {
     /*************************************/
     static boolean is_num_constant(String str)
     {
-        int i=0;
+        int i=1;
 
         if ( Character.isDigit(str.charAt(0)))
         {

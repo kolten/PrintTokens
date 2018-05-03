@@ -5,19 +5,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.Collection;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
 public class KeywordParamsTest {
 
     private String keyword;
-    private PrintTokens tokens;
 
     public KeywordParamsTest(String input){
         this.keyword = input;
@@ -33,11 +29,6 @@ public class KeywordParamsTest {
             {"xor"},
             {"lambda"}
         });
-    }
-
-    @Before
-    public void setUp(){
-        tokens = new PrintTokens();
     }
 
     @Test

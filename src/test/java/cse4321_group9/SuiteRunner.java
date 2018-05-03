@@ -11,7 +11,15 @@ import java.util.List;
 
 @RunWith(Suite.class)
 
-@Suite.SuiteClasses({KeywordParamsTest.class, PrintTokensTest.class})
+@Suite.SuiteClasses({
+        CharParamsTest.class,
+        CommentParamsTest.class,
+        IdentifierParamsTest.class,
+        KeywordParamsTest.class,
+        NumParamsTest.class,
+        SpecialParamsTest.class,
+        StringParamsTest.class
+})
 public class SuiteRunner {
 
 }

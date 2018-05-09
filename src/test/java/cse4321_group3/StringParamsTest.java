@@ -1,4 +1,4 @@
-package cse4321_group9;
+package cse4321_group3;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,28 +10,27 @@ import java.util.Collection;
 import static junit.framework.TestCase.assertTrue;
 
 @RunWith(Parameterized.class)
-public class CommentParamsTest
-{
-    private String comment;
+public class StringParamsTest {
+    private String str;
 
-    public CommentParamsTest(String input){
-        this.comment = input;
+    public StringParamsTest(String input) {
+        this.str = input;
     }
 
     @Parameterized.Parameters(name = "{index}: {0}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {";hello"},
-                {";this"},
-                {";is"},
-                {";a"},
-                {";comment"}
+                {"\"this\""},
+                {"\"is\""},
+                {"\"a\""},
+                {"\"string\""}
         });
     }
 
+
     @Test
-    public void generic_test(){
-        boolean isComment = PrintTokens.is_comment(comment);
-        assertTrue(isComment);
+    public void is_string_constant() {
+        boolean isStringConst = PrintTokens.is_str_constant(str);
+        assertTrue(isStringConst);
     }
 }

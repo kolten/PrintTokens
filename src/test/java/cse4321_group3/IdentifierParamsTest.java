@@ -1,5 +1,4 @@
-package cse4321_group9;
-
+package cse4321_group3;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,23 +10,27 @@ import java.util.Collection;
 import static junit.framework.TestCase.assertTrue;
 
 @RunWith(Parameterized.class)
-public class NumParamsTest {
-    private String numberStr;
+public class IdentifierParamsTest {
+    private String identifier;
 
-    public NumParamsTest(String input) {
-        this.numberStr = input;
+    public IdentifierParamsTest(String input) {
+        this.identifier = input;
     }
 
     @Parameterized.Parameters(name = "{index}: {0}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {""}
+                {"a"},
+                {"aa"},
+                {"a1"},
+                {"var"}
         });
     }
 
 
     @Test
-    public void generic_test() {
-
+    public void is_identifier() {
+        boolean isIdentifier = PrintTokens.is_identifier(identifier);
+        assertTrue(isIdentifier);
     }
 }

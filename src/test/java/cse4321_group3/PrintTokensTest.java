@@ -1,10 +1,9 @@
-package cse4321_group9;
+package cse4321_group3;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
